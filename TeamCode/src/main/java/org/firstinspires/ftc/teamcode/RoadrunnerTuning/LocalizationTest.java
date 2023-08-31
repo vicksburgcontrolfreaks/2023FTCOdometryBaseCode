@@ -1,11 +1,13 @@
-package org.firstinspires.ftc.teamcode.drive.opmode;
+package org.firstinspires.ftc.teamcode.RoadrunnerTuning;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.drive.MecanumDrive;
+import org.firstinspires.ftc.teamcode.util.Encoder;
 
 /**
  * This is a simple teleop routine for testing localization. Drive the robot around like a normal
@@ -18,8 +20,10 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 public class LocalizationTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
-
+        MecanumDrive drive = new MecanumDrive(hardwareMap);
+        Encoder leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "leftRear")); //2
+        Encoder rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "rightRear")); //3
+        Encoder frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "leftFront")); //0
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         waitForStart();
@@ -39,6 +43,9 @@ public class LocalizationTest extends LinearOpMode {
             telemetry.addData("x", poseEstimate.getX());
             telemetry.addData("y", poseEstimate.getY());
             telemetry.addData("heading", poseEstimate.getHeading());
+            telemetry.addData("leftencoder", leftEncoder.getCurrentPosition());
+            telemetry.addData("rightencoder", rightEncoder.getCurrentPosition());
+            telemetry.addData("frontencoder", frontEncoder.getCurrentPosition());
             telemetry.update();
         }
     }

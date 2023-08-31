@@ -17,8 +17,14 @@ apply from: '../build.dependencies.gradle'
 
 android {
     namespace = 'org.firstinspires.ftc.teamcode'
+    androidResources {
+        noCompress 'tflite'
+    }
 
     packagingOptions {
+        jniLibs {
+            pickFirsts += ['**/*.so']
+        }
         jniLibs.useLegacyPackaging true
     }
 }
@@ -32,5 +38,9 @@ dependencies {
     implementation 'com.acmerobotics.roadrunner:core:0.5.6'
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7'
+
     implementation 'org.openftc:easyopencv:1.6.2'
+
+    implementation 'org.openftc:apriltag:2.0.0'
+
 }

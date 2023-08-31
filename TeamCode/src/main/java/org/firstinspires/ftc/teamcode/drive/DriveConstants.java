@@ -33,10 +33,8 @@ public class DriveConstants {
      * These are motor constants that should be listed online for your motors.
      */
 
-    public static final double TICKS_PER_REV = 560;
-    public static final double MAX_RPM = 300; //
-
-
+    public static final double TICKS_PER_REV = 537.6; //537.6
+    public static final double MAX_RPM = 312.5; //
 
     /*
      * Set RUN_USING_ENCODER to true to enable built-in hub velocity control using drive encoders.
@@ -59,8 +57,8 @@ public class DriveConstants {
      * convenience. Make sure to exclude any gear ratio included in MOTOR_CONFIG from GEAR_RATIO.
      */
     public static double WHEEL_RADIUS = 1.8898; // in
-    public static double GEAR_RATIO = 0.05; // output (wheel) speed / input (motor) speed 1/20
-    public static double TRACK_WIDTH = 13.2801; // in
+    public static double GEAR_RATIO = 0.05208; // output (wheel) speed / input (motor) speed 1/19.2
+    public static double TRACK_WIDTH = 14.35; // in
 
     /*
      * These are the feedforward parameters used to model the drive motor behavior. If you are using
@@ -68,9 +66,10 @@ public class DriveConstants {
      * motor encoders or have elected not to use them for velocity control, these values should be
      * empirically tuned.
      */
-    public static double kV = 1.0 / rpmToVelocity(MAX_RPM);
-    public static double kA = 0;
-    public static double kStatic = 0;
+//    public static double kV = 0.016 / rpmToVelocity(MAX_RPM);
+    public static double kV = 0.0165;
+    public static double kA = 0.0015;
+    public static double kStatic = 0.035;
 
     /*
      * These values are used to generate the trajectories for you robot. To ensure proper operation,
@@ -79,10 +78,10 @@ public class DriveConstants {
      * small and gradually increase them later after everything is working. All distance units are
      * inches.
      */
-    public static double MAX_VEL = 2.523217263620446;
-    public static double MAX_ACCEL = 2.523217263620446;
-    public static double MAX_ANG_VEL = Math.toRadians(11.120746153846154);
-    public static double MAX_ANG_ACCEL = Math.toRadians(11.120746153846154);
+    public static double MAX_VEL = 52; //in/s
+    public static double MAX_ACCEL = 30; //in/s^2
+    public static double MAX_ANG_VEL = Math.toRadians(215); //degrees/s
+    public static double MAX_ANG_ACCEL = Math.toRadians(45); //degrees/s^2
 
     /*
      * Adjust the orientations here to match your robot. See the FTC SDK documentation for details.
