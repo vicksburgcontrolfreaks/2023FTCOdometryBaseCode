@@ -40,8 +40,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -155,15 +153,15 @@ public class Constants {
     /* Declare OpMode members. */
     private LinearOpMode controlFreaks = null;   // gain access to methods in the calling OpMode.
     // Define a constructor that allows the OpMode to pass a reference to itself.
-    public Constants(LinearOpMode opmode) {
+    public Constants(TeleOpFieldOriented opmode) {
         controlFreaks = opmode;
     }
 
     // Define Motor and Servo objects  (Make them private so they can't be accessed externally)
-    public DcMotor left_front  = null;
-    private DcMotor right_front = null;
-    private DcMotor right_rear  = null;
-    private DcMotor left_rear   = null;
+    public DcMotor leftFront  = null;
+    DcMotor rightFront = null;
+    DcMotor rightRear  = null;
+    DcMotor leftRear   = null;
     DcMotor slide_motor         = null;
     public BNO055IMU imu       = null;      // Control/Expansion Hub IMU
     Servo Back                  = null;
@@ -247,20 +245,20 @@ public class Constants {
      */
     public void init()    {
         // Define and Initialize Motors (note: need to use reference to actual OpMode).
-        left_front = controlFreaks.hardwareMap.get(DcMotor.class, "left_front");
-        right_front = controlFreaks.hardwareMap.get(DcMotor.class, "right_front");
-        left_rear = controlFreaks.hardwareMap.get(DcMotor.class, "left_rear");
-        right_rear = controlFreaks.hardwareMap.get(DcMotor.class, "right_rear");
+        leftFront = controlFreaks.hardwareMap.get(DcMotor.class, "left_front");
+        rightFront = controlFreaks.hardwareMap.get(DcMotor.class, "right_front");
+        leftRear = controlFreaks.hardwareMap.get(DcMotor.class, "left_rear");
+        rightRear = controlFreaks.hardwareMap.get(DcMotor.class, "right_rear");
 //        slide_motor = myOpMode.hardwareMap.get(DcMotor.class, "slide_motor");
 //        Back = myOpMode.hardwareMap.get(Servo.class, "Back");
 //        Front = myOpMode.hardwareMap.get(Servo.class, "Front");
 //        touch = myOpMode.hardwareMap.get(DigitalChannel.class, "touch");
 //        touch.setMode(DigitalChannel.Mode.INPUT);
 
-        left_front.setDirection(DcMotor.Direction.FORWARD);
-        left_rear.setDirection(DcMotor.Direction.FORWARD);
-        right_front.setDirection(DcMotor.Direction.REVERSE);
-        right_rear.setDirection(DcMotor.Direction.REVERSE);
+        leftFront.setDirection(DcMotor.Direction.FORWARD);
+        leftRear.setDirection(DcMotor.Direction.FORWARD);
+        rightFront.setDirection(DcMotor.Direction.REVERSE);
+        rightRear.setDirection(DcMotor.Direction.REVERSE);
 
         // define initialization values for IMU, and then initialize it.
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -379,30 +377,30 @@ public class Constants {
     }
 
     public void runWithEncoders(){
-        left_front.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        right_front.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        left_rear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        right_rear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         // Set the encoders for closed loop speed control, and reset the heading.
-        left_front.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        right_front.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        left_rear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        right_rear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void floatChassis(){
-        left_front.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        right_front.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        left_rear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        right_rear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
     public void brakeChassis(){
-        left_front.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        right_front.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        left_rear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        right_rear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     }
 
@@ -460,8 +458,8 @@ public class Constants {
         if (straight) {
             controlFreaks.telemetry.addData("Motion", "Drive Straight");
             controlFreaks.telemetry.addData("Target Pos L:R",  "%7d:%7d",      leftFrontTarget,  rightFrontTarget);
-            controlFreaks.telemetry.addData("Actual Pos L:R",  "%7d:%7d",      left_front.getCurrentPosition(),
-                    right_front.getCurrentPosition());
+            controlFreaks.telemetry.addData("Actual Pos L:R",  "%7d:%7d",      leftFront.getCurrentPosition(),
+                    rightFront.getCurrentPosition());
         } else {
             controlFreaks.telemetry.addData("Motion", "Turning");
         }
