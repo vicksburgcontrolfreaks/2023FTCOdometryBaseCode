@@ -245,11 +245,11 @@ public class Constants {
      */
     public void init()    {
         // Define and Initialize Motors (note: need to use reference to actual OpMode).
-        leftFront = controlFreaks.hardwareMap.get(DcMotor.class, "left_front");
-        rightFront = controlFreaks.hardwareMap.get(DcMotor.class, "right_front");
-        leftRear = controlFreaks.hardwareMap.get(DcMotor.class, "left_rear");
-        rightRear = controlFreaks.hardwareMap.get(DcMotor.class, "right_rear");
-//        slide_motor = myOpMode.hardwareMap.get(DcMotor.class, "slide_motor");
+        leftFront = controlFreaks.hardwareMap.get(DcMotor.class, "leftFront");
+        rightFront = controlFreaks.hardwareMap.get(DcMotor.class, "rightFront");
+        leftRear = controlFreaks.hardwareMap.get(DcMotor.class, "leftRear");
+        rightRear = controlFreaks.hardwareMap.get(DcMotor.class, "rightRear");
+        slide_motor = controlFreaks.hardwareMap.get(DcMotor.class, "slide_motor");
 //        Back = myOpMode.hardwareMap.get(Servo.class, "Back");
 //        Front = myOpMode.hardwareMap.get(Servo.class, "Front");
 //        touch = myOpMode.hardwareMap.get(DigitalChannel.class, "touch");

@@ -48,18 +48,17 @@ public class TeleOpFieldOriented extends LinearOpMode {
     boolean highConeDrop = true;
 
     // These variable are declared here (as class members) so they can be updated in various methods,
-    // but still be displayed by sendT.
-    // .
-    // elemetry()
-    private double targetHeading = 0;
-    private double driveSpeed = 0;
-    private double turnSpeed = 0;
-    private double leftSpeed = 0;
-    private double rightSpeed = 0;
-    private final int leftFrontTarget = 0;
-    private final int leftRearTarget = 0;
-    private final int rightFrontTarget = 0;
-    private final int rightRearTarget = 0;
+    // but still be displayed by sendTelemetry()
+
+//    private double targetHeading = 0;
+//    private double driveSpeed = 0;
+//    private double turnSpeed = 0;
+//    private double leftSpeed = 0;
+//    private double rightSpeed = 0;
+//    private final int leftFrontTarget = 0;
+//    private final int leftRearTarget = 0;
+//    private final int rightFrontTarget = 0;
+//    private final int rightRearTarget = 0;
 
     @Override
     public void runOpMode() {
